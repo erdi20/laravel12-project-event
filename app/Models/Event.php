@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Event extends Model
 {
@@ -64,4 +65,22 @@ class Event extends Model
         'registration_open_date' => 'datetime',
         'registration_close_date' => 'datetime',
     ];
+
+    public function isFull(): bool
+    {
+        if ($this->max_participants === null) {
+            return false;
+        }
+
+        return $this->registrations()->where('status', 'paid')->count() >= $this->max_participants;
+    }
+
+    public function hasRegistered(): bool
+    {
+        if (!Auth::check()) {
+            return false;
+        }
+
+        return $this->registrations()->where('event_id', $this->id)->where('user_id', Auth::id())->exists();
+    }
 }

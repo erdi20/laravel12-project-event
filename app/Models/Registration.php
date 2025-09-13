@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Model;
 
 class Registration extends Model
 {
     protected $table = 'registrations';
 
     protected $fillable = [
+        'user_id',
         'event_id',
         'name',
         'email',
@@ -33,6 +34,11 @@ class Registration extends Model
     public function registrations(): HasMany
     {
         return $this->hasMany(Registration::class);
+    }
+
+    public function User()
+    {
+        return $this->belongsTo(User::class);
     }
 
     protected $casts = [
