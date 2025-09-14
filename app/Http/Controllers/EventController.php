@@ -15,12 +15,13 @@ class EventController extends Controller
     public function index(Request $request)
     {
         $events = Event::published()
-            // ->with('user')
+            ->with('registrations')
             ->search($request->input('search'))
             ->latest()
             ->get();
+        $eventsCount = $events->count();
 
-        return view('pages.event', compact('events'));
+        return view('pages.event', compact('events', 'eventsCount'));
     }
 
     // public function search(Request $request)

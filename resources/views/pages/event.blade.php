@@ -1,7 +1,7 @@
 <x-layout.app>
     <main class="container mx-auto px-4 py-12">
         <!-- Filter Section -->
-        <section class="mb-12 rounded-xl bg-gray-50 p-6 shadow-lg">
+        {{-- <section class="mb-12 rounded-xl bg-gray-50 p-6 shadow-lg">
             <div class="flex flex-col items-center justify-between space-y-6 md:flex-row md:space-y-0">
                 <h2 class="text-2xl font-bold text-gray-800">Acara Terdekat</h2>
 
@@ -31,13 +31,13 @@
 
                 </div>
             </div>
-        </section>
+        </section> --}}
 
         <!-- Events Grid -->
         <section>
             <div class="mb-8 flex items-center justify-between">
-                <h3 class="text-xl font-semibold text-gray-800">18 Acara Tersedia</h3>
-                <div class="flex space-x-2">
+                <h3 class="text-xl font-semibold text-gray-800">{{ $eventsCount }} Acara Tersedia</h3>
+                {{-- <div class="flex space-x-2">
                     <button class="rounded-lg bg-gray-200 p-2 hover:bg-gray-300">
                         <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
@@ -48,7 +48,7 @@
                             <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
                         </svg>
                     </button>
-                </div>
+                </div> --}}
             </div>
 
             <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -85,8 +85,13 @@
                                 <span>{{ $event->start_date->translatedFormat('d F Y') }} - {{ $event->end_date->translatedFormat('d F Y') }}</span>
                             </div>
                             <div class="flex items-center justify-between">
+
                                 <span class="text-lg font-bold text-gray-900">{{ Number::currency($event->price, 'IDR') }}</span>
-                                <span class="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-800">Tersedia</span>
+                                @if ($event->isFull())
+                                    <span class="rounded-full bg-red-100 p-3 py-1 text-xs font-semibold text-green-800">Penuh</span>
+                                @else
+                                    <span class="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-800">Tersedia</span>
+                                @endif
                             </div>
                         </div>
                     </a>
