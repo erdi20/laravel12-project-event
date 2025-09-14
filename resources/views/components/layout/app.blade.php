@@ -14,6 +14,7 @@
 
     {{ $slot }}
     {{ $script ?? '' }}
+    <x-partial.footer />
 </body>
 
 </html>
