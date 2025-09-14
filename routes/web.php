@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RegistrationController;
-use App\Http\Controllers\UtamaController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\UtamaController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\GoogleLoginController;
+use App\Http\Controllers\RegistrationController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -27,3 +28,5 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+Route::get('/auth/google/redirect', [GoogleLoginController::class, 'redirectToGoogle'])->name('google.login');
+Route::get('/auth/google/callback', [GoogleLoginController::class, 'handleGoogleCallback']);
