@@ -83,4 +83,13 @@ class Event extends Model
 
         return $this->registrations()->where('event_id', $this->id)->where('user_id', Auth::id())->exists();
     }
+
+    public function scopeSearch($query, ?string $search = null)
+    {
+        return $query->when($search, function ($q) use ($search) {
+            $q
+                ->where('name', 'like', '%' . $search . '%')
+                ->orWhere('description', 'like', '%' . $search . '%');
+        });
+    }
 }

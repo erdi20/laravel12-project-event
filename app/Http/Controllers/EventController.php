@@ -12,14 +12,23 @@ class EventController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $events = Event::published()
             // ->with('user')
+            ->search($request->input('search'))
             ->latest()
             ->get();
+
         return view('pages.event', compact('events'));
     }
+
+    // public function search(Request $request)
+    // {
+    //     $searchQuery = $request->input('search');
+    //     $searchEvents = Event::search($searchQuery)->get();
+    //     return view('pages.event', compact('searchEvents'));
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -47,7 +56,7 @@ class EventController extends Controller
         $hasRegistered = $event->hasRegistered();
         $isFull = $event->isFull();
         return view('pages.detail-event', compact(
-            'event', 'hasRegistered','isFull'
+            'event', 'hasRegistered', 'isFull'
         ));
     }
 
