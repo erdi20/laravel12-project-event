@@ -19,12 +19,12 @@
                 @foreach ($event->categories as $item)
                     <span class="rounded-full bg-purple-100 px-4 py-1 text-sm font-semibold text-purple-800">{{ $item->name }}</span>
                 @endforeach
-                <span class="flex items-center text-sm text-gray-600">
+                {{-- <span class="flex items-center text-sm text-gray-600">
                     <svg class="mr-1 h-4 w-4 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
                     </svg>
                     1.2k Disukai
-                </span>
+                </span> --}}
             </div>
             <h1 class="mt-4 text-4xl font-bold text-gray-900">{{ $event->name }}</h1>
             <div class="mt-2 flex items-center text-lg text-gray-600">
@@ -41,11 +41,11 @@
                 <div class="mb-8 overflow-hidden rounded-2xl bg-white shadow-lg">
                     <div class="relative h-96 w-full bg-gray-200">
                         <img src="{{ asset('storage/' . $event->poster_img) }}" alt="Poster Lomba {{ $event->name }}" class="h-full w-full object-cover">
-                        <button class="absolute right-4 top-4 rounded-full bg-white/90 p-3 text-gray-800 hover:bg-white">
+                        {{-- <button class="absolute right-4 top-4 rounded-full bg-white/90 p-3 text-gray-800 hover:bg-white">
                             <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                             </svg>
-                        </button>
+                        </button> --}}
                     </div>
                 </div>
 
@@ -158,7 +158,7 @@
                     </div>
 
                     <div>
-                        <h3 class="mb-3 text-xl font-semibold text-gray-900">Persyaratan dan Ketentuan</h3>
+                        {{-- <h3 class="mb-3 text-xl font-semibold text-gray-900">Persyaratan dan Ketentuan</h3> --}}
                         {{-- <ul class="space-y-2 text-gray-600">
                 @foreach (json_decode($event->requirements) as $requirement)
                     <li class="flex items-start">
@@ -169,7 +169,7 @@
                     </li>
                 @endforeach
             </ul> --}}
-                        <p class="text-gray-600">Lihat deskripsi lomba untuk detail persyaratan dan ketentuan lebih lanjut.</p>
+                        {{-- <p class="text-gray-600">Lihat deskripsi lomba untuk detail persyaratan dan ketentuan lebih lanjut.</p> --}}
                     </div>
                 </div>
             </div>
