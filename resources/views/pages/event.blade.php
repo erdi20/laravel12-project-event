@@ -1,7 +1,7 @@
 <x-layout.app>
     <main class="container mx-auto px-4 py-12">
         <!-- Filter Section -->
-        <section class="mb-12 rounded-xl bg-gray-50 p-6  shadow-lg">
+        <section class="mb-12 rounded-xl bg-gray-50 p-6 shadow-lg">
             <div class="flex flex-col items-center justify-between space-y-6 md:flex-row md:space-y-0">
                 <h2 class="text-2xl font-bold text-gray-800">Acara Terdekat</h2>
 
@@ -52,44 +52,40 @@
             </div>
 
             <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                @foreach ($events as $item)
-                    <a href="/detail-event/{{ $item->slug }}" id="event-{{ $item->id }}" class="group block overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                @foreach ($events as $event)
+                    <a href="/detail-event/{{ $event->slug }}" id="event-{{ $event->id }}" class="group block overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                         <div class="relative">
-                            <img src="{{ asset('storage/' . $item->poster_img) }}" alt="Event Poster" class="h-56 w-full object-cover">
-                            <div class="absolute bottom-0 left-0 bg-amber-500 px-3 py-1 text-sm font-bold text-white">
+                            <img src="{{ asset('storage/' . $event->poster_img) }}" alt="Event Poster" class="h-56 w-full object-cover">
+                            {{-- <div class="absolute bottom-0 left-0 bg-amber-500 px-3 py-1 text-sm font-bold text-white">
                                 Trending
-                            </div>
-                            <button class="absolute right-4 top-4 rounded-full bg-white/90 p-2 text-gray-800 transition-colors duration-200 group-hover:bg-white">
+                            </div> --}}
+                            {{-- <button class="absolute right-4 top-4 rounded-full bg-white/90 p-2 text-gray-800 transition-colors duration-200 group-hover:bg-white">
                                 <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                                 </svg>
-                            </button>
+                            </button> --}}
                         </div>
                         <div class="p-5">
                             <div class="mb-2 flex items-center justify-between">
-                                <span class="rounded-full bg-teal-100 px-3 py-1 text-xs font-semibold text-teal-800">Workshop</span>
-                                <div class="flex items-center text-sm text-gray-500">
-                                    <svg class="mr-1 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    1.2k
-                                </div>
+                                @foreach ($event->categories as $category)
+                                    <span class="rounded-full bg-teal-100 px-3 py-1 text-xs font-semibold text-teal-800">{{ $category->name }}</span>
+                                @endforeach
                             </div>
-                            <h3 class="mb-2 text-xl font-bold text-gray-900">{{ $item->name }}</h3>
+                            <h3 class="mb-2 text-xl font-bold text-gray-900">{{ $event->name }}</h3>
                             <div class="mb-3 flex items-center text-sm text-gray-600">
                                 <svg class="mr-2 h-5 w-5 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
                                 </svg>
-                                <span>{{ $item->location }}</span>
+                                <span>{{ $event->location }}</span>
                             </div>
                             <div class="mb-4 flex items-center text-sm text-gray-600">
                                 <svg class="mr-2 h-5 w-5 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
                                 </svg>
-                                <span>{{ $item->start_date->translatedFormat('d F Y') }} - {{ $item->end_date->translatedFormat('d F Y') }}</span>
+                                <span>{{ $event->start_date->translatedFormat('d F Y') }} - {{ $event->end_date->translatedFormat('d F Y') }}</span>
                             </div>
                             <div class="flex items-center justify-between">
-                                <span class="text-lg font-bold text-gray-900">{{ Number::currency($item->price, 'IDR') }}</span>
+                                <span class="text-lg font-bold text-gray-900">{{ Number::currency($event->price, 'IDR') }}</span>
                                 <span class="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-800">Tersedia</span>
                             </div>
                         </div>
