@@ -55,6 +55,7 @@ class EventController extends Controller
         // $register = Event::RegisterPaid()->get();
         $event = Event::where('slug', $slug)->RegisterPaid()->first();
         $hasRegistered = $event->hasRegistered();
+        // $notPaid = $event->hasRegistered()::where('status', 'pending_payment');
         $isFull = $event->isFull();
         return view('pages.detail-event', compact(
             'event', 'hasRegistered', 'isFull'

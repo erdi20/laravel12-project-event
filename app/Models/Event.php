@@ -81,7 +81,7 @@ class Event extends Model
             return false;
         }
 
-        return $this->registrations()->where('event_id', $this->id)->where('user_id', Auth::id())->exists();
+        return $this->registrations()->where('event_id', $this->id)->where('status', 'paid')->where('user_id', Auth::id())->exists();
     }
 
     public function scopeSearch($query, ?string $search = null)

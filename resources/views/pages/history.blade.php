@@ -27,16 +27,23 @@
                                         <td class="whitespace-nowrap px-6 py-4">{{ $registration->event->name }}</td>
                                         <td class="whitespace-nowrap px-6 py-4">{{ $registration->created_at->format('d M Y') }}</td>
                                         <td class="whitespace-nowrap px-6 py-4">
-                                            <span
-                                                class="@if ($registration->status == 'paid') bg-green-100 text-green-800
-                                                @elseif($registration->status == 'pending_payment') bg-yellow-100 text-yellow-800
-                                                @else bg-red-100 text-red-800 @endif inline-flex rounded-full px-2 text-xs font-semibold leading-5">
-                                                {{ ucfirst($registration->status) }}
+
+                                            <span @class([
+                                                'inline-flex rounded-full px-2 text-xs font-semibold leading-5',
+                                                'bg-green-100 text-green-800' => $registration->status == 'Paid',
+                                                'bg-yellow-100 text-yellow-800' =>
+                                                    $registration->status == 'Pending_payment',
+                                                'bg-red-100 text-red-800' => !in_array($registration->status, [
+                                                    'Paid',
+                                                    'Pending_payment',
+                                                ]),
+                                            ])>
+                                                {{ ucfirst(str_replace('_', ' ', $registration->status)) }}
                                             </span>
                                         </td>
                                         <td class="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
-                                            @if ($registration->status == 'pending_payment')
-                                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Lihat Pembayaran</a>
+                                            @if ($registration->status == 'Pending_payment')
+                                                <a href="/detail-event/{{ $registration->event->slug }}" class="text-indigo-600 hover:text-indigo-900">Lanjutkan Daftar</a>
                                             @else
                                                 <p class="text-center">tidak ada pembayaran</p>
                                             @endif

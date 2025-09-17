@@ -37,24 +37,27 @@
                     <a href="/detail-event/{{ $item->slug }}" id="event-{{ $item->id }}" class="group block overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                         <div class="relative">
                             <img src="{{ asset('storage/' . $item->poster_img) }}" alt="Event Poster" class="h-56 w-full object-cover">
-                            <div class="absolute bottom-0 left-0 bg-amber-500 px-3 py-1 text-sm font-bold text-white">
+                            {{-- <div class="absolute bottom-0 left-0 bg-amber-500 px-3 py-1 text-sm font-bold text-white">
                                 Trending
                             </div>
                             <button class="absolute right-4 top-4 rounded-full bg-white/90 p-2 text-gray-800 transition-colors duration-200 group-hover:bg-white">
                                 <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                                 </svg>
-                            </button>
+                            </button> --}}
                         </div>
                         <div class="p-5">
                             <div class="mb-2 flex items-center justify-between">
-                                <span class="rounded-full bg-teal-100 px-3 py-1 text-xs font-semibold text-teal-800">Workshop</span>
+                                @foreach ($item->categories as $category)
+                                    <span class="rounded-full bg-teal-100 px-3 py-1 text-xs font-semibold text-teal-800">{{ $category->name }}</span>
+                                @endforeach
+                                {{-- <span class="rounded-full bg-teal-100 px-3 py-1 text-xs font-semibold text-teal-800">Workshop</span>
                                 <div class="flex items-center text-sm text-gray-500">
                                     <svg class="mr-1 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
                                     </svg>
                                     1.2k
-                                </div>
+                                </div> --}}
                             </div>
                             <h3 class="mb-2 text-xl font-bold text-gray-900">{{ $item->name }}</h3>
                             <div class="mb-3 flex items-center text-sm text-gray-600">

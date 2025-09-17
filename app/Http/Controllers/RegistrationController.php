@@ -142,8 +142,8 @@ class RegistrationController extends Controller
 
     public function history()
     {
-        $user = Auth::user();
-        $registrations = $user->registrations()->with('event')->get();
+        $allRegistrations = Registration::HistoryUser()->get();
+        $registrations = $allRegistrations->groupBy('event_id')->map->first();
         return \view('pages.history', compact('registrations'));
     }
 }

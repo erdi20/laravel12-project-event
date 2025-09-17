@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Registration extends Model
 {
@@ -21,12 +22,12 @@ class Registration extends Model
         'payment_id'
     ];
 
-    public function Event()
+    public function event()
     {
         return $this->belongsTo(Event::class);
     }
 
-    public function Payment()
+    public function payment()
     {
         return $this->hasOne(Payment::class);
     }
@@ -44,4 +45,11 @@ class Registration extends Model
     protected $casts = [
         'registration_date' => 'datetime',
     ];
+
+    public function scopeHistoryUser($query)
+    {
+        return $query
+            ->where('user_id', Auth::id())
+            ->orderBy('created_at', 'desc');
+    }
 }

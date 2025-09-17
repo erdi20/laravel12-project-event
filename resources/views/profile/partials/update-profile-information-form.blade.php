@@ -18,9 +18,14 @@
         @method('patch')
 
         <div>
-            <x-input-label for="name" :value="__('Name')" />
+            <x-input-label for="name" :value="__('Nama')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
+        </div>
+        <div>
+            <x-input-label for="whatsapp_number" :value="__('Nomor Whatsapp')" />
+            <x-text-input id="whatsapp_number" name="whatsapp_number" type="text" class="mt-1 block w-full" :value="old('whatsapp_number', $user->whatsapp_number)" required autofocus autocomplete="whatsapp_number" />
+            <x-input-error class="mt-2" :messages="$errors->get('whatsapp_number')" />
         </div>
 
         <div>

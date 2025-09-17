@@ -307,33 +307,25 @@
             <!-- Right Column (Ticket Purchase) -->
             <div class="mt-8 lg:mt-0 lg:w-1/3">
                 <div class="sticky top-4 rounded-2xl bg-white p-6 shadow-lg">
-                    <h3 class="mb-4 text-lg font-bold text-gray-900">Daftar Lomba</h3>
+                    <h3 class="mb-4 text-lg font-bold text-gray-900 text-center">Daftar Acara</h3>
 
                     <form action="{{ route('registrations.store') }}" method="POST">
                         @csrf
 
-                        <!-- Hidden: Event ID -->
                         <input type="hidden" name="event_id" value="{{ $event->id }}">
 
-                        <!-- Nama -->
                         <div class="mb-4">
-                            <label for="name" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
-                            <input type="text" id="name" name="name" required class="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-amber-500" placeholder="Masukkan nama lengkap" value="{{ Auth::user()->name }}">
+                            <input type="hidden" id="name" name="name" required class="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-amber-500" placeholder="Masukkan nama lengkap" value="{{ Auth::user()->name }}">
                         </div>
 
-                        <!-- Email -->
                         <div class="mb-4">
-                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                            <input type="email" id="email" name="email" required class="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-amber-500" placeholder="contoh@email.com" value="{{ Auth::user()->email }}">
+                            <input type="hidden" id="email" name="email" required class="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-amber-500" placeholder="contoh@email.com" value="{{ Auth::user()->email }}">
                         </div>
 
-                        <!-- Phone -->
                         <div class="mb-4">
-                            <label for="phone_number" class="block text-sm font-medium text-gray-700">Nomor WhatsApp</label>
-                            <input type="text" id="phone_number" name="phone_number" required class="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-amber-500" placeholder="081234567890">
+                            <input type="hidden" id="phone_number" name="phone_number" required class="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-amber-500" placeholder="081234567890" value="{{ Auth::user()->whatsapp_number }}">
                         </div>
 
-                        <!-- Submit Button -->
                         @if ($isFull)
                             <div class="text-center">
                                 <p class="text-danger-600">Pendaftaran sudah penuh</p>
