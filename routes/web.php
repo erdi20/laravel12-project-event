@@ -7,9 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GoogleLoginController;
 use App\Http\Controllers\RegistrationController;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+
 Route::get('/', [UtamaController::class, 'index'])->name('home');
 Route::get('/dashboard', [UtamaController::class, 'index'])
     ->middleware(['auth', 'verified'])
@@ -22,7 +20,6 @@ Route::middleware('auth')->group(function () {
     // ---
     Route::get('/detail-event/{slug}', [EventController::class, 'show']);
     Route::get('/events', [EventController::class, 'index'])->name('events.index');
-    // Route::get('/search-event', [EventController::class, 'index'])->name('events.search');
     Route::post('/registrations', [RegistrationController::class, 'store'])->name('registrations.store');
     Route::get('/my-registrations', [RegistrationController::class, 'history'])->name('registrations.history');
 });

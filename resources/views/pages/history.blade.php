@@ -41,7 +41,7 @@
                                                 {{ ucfirst(str_replace('_', ' ', $registration->status)) }}
                                             </span>
                                         </td>
-                                        <td class="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
+                                        <td class="whitespace-nowrap px-6 py-4 text-center text-sm font-medium">
                                             @if ($registration->status == 'Pending_payment')
                                                 <a href="/detail-event/{{ $registration->event->slug }}" class="text-indigo-600 hover:text-indigo-900">Lanjutkan Daftar</a>
                                             @else

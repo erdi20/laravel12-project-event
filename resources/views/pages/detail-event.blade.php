@@ -307,7 +307,7 @@
             <!-- Right Column (Ticket Purchase) -->
             <div class="mt-8 lg:mt-0 lg:w-1/3">
                 <div class="sticky top-4 rounded-2xl bg-white p-6 shadow-lg">
-                    <h3 class="mb-4 text-lg font-bold text-gray-900 text-center">Daftar Acara</h3>
+                    <h3 class="mb-4 text-center text-lg font-bold text-gray-900">Daftar Acara</h3>
 
                     <form action="{{ route('registrations.store') }}" method="POST">
                         @csrf
@@ -336,6 +336,10 @@
                                 <p class="text-sm text-gray-500">
                                     Cek status pendaftaran Anda melalui email konfirmasi.
                                 </p>
+                            </div>
+                        @elseif ($event->registration_close_date < now())
+                            <div class="text-center">
+                                <p class="text-danger-600">Sudah tutup pendaftaran untuk event ini.</p>
                             </div>
                         @else
                             <button type="submit" class="w-full rounded-full bg-gradient-to-r from-amber-500 to-amber-600 py-3 font-bold text-white shadow-lg transition hover:from-amber-600 hover:to-amber-700 hover:shadow-xl">
